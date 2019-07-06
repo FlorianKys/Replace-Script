@@ -1,0 +1,125 @@
+$objWord = New-Object -comobject Word.Application 
+$objWord.Visible = $true
+
+$list = Get-ChildItem "C:\Users\Florian\Desktop\Scripts\Replace\*.doc*","C:\Users\Florian\Desktop\Scripts\Replace\*.rtf" -Recurse
+
+[int]$p = 0
+foreach ($item in $list)
+{
+    $p++
+    
+    Write-Progress -Activity "Dokumente werden geprüft und bearbeitet"  -Status "Aktuell bei Dokument $($item), $($p) von $($list.Count)"
+    sleep -Seconds 0.5
+
+$objDoc = $objWord.Documents.Open($item.FullName,$true)
+
+$objSelection = $objWord.Selection
+$wdFindContinue = 1
+$FindText = "Kinder, Jugend und Familie"
+$MatchCase = $False
+$MatchWholeWord = $true
+$MatchWildcards = $False
+$MatchSoundsLike = $False
+$MatchAllWordForms = $False
+$Forward = $True
+$Wrap = $wdFindContinue
+$Format = $False
+$wdReplaceNone = 0
+$ReplaceWith = "Kinder, Jugend und Familien"
+$wdFindContinue = 1
+$ReplaceAll = 2
+
+$a = $objSelection.Find.Execute($FindText,$MatchCase,$MatchWholeWord, `
+$MatchWildcards,$MatchSoundsLike,$MatchAllWordForms,$Forward,`
+$Wrap,$Format,$ReplaceWith,$ReplaceAll) 
+
+$objSelection = $objWord.Selection
+$wdFindContinue = 1
+$FindText = "Kinder,Jugend und Familie"
+$MatchCase = $False
+$MatchWholeWord = $true
+$MatchWildcards = $False
+$MatchSoundsLike = $False
+$MatchAllWordForms = $False
+$Forward = $True
+$Wrap = $wdFindContinue
+$Format = $False
+$wdReplaceNone = 0
+$ReplaceWith = "Kinder, Jugend und Familien"
+$wdFindContinue = 1
+$ReplaceAll = 2
+
+$a = $objSelection.Find.Execute($FindText,$MatchCase,$MatchWholeWord, `
+$MatchWildcards,$MatchSoundsLike,$MatchAllWordForms,$Forward,`
+$Wrap,$Format,$ReplaceWith,$ReplaceAll)
+
+$objSelection = $objWord.Selection
+$wdFindContinue = 1
+$FindText = "Kinder, Jugend und Erziehung"
+$MatchCase = $False
+$MatchWholeWord = $true
+$MatchWildcards = $False
+$MatchSoundsLike = $False
+$MatchAllWordForms = $False
+$Forward = $True
+$Wrap = $wdFindContinue
+$Format = $False
+$wdReplaceNone = 0
+$ReplaceWith = "Kinder, Jugend und Familien"
+$wdFindContinue = 1
+$ReplaceAll = 2
+
+$a = $objSelection.Find.Execute($FindText,$MatchCase,$MatchWholeWord, `
+$MatchWildcards,$MatchSoundsLike,$MatchAllWordForms,$Forward,`
+$Wrap,$Format,$ReplaceWith,$ReplaceAll)
+
+$objSelection = $objWord.Selection
+$wdFindContinue = 1
+$FindText = "Kinder,Jugend und Erziehung"
+$MatchCase = $False
+$MatchWholeWord = $true
+$MatchWildcards = $False
+$MatchSoundsLike = $False
+$MatchAllWordForms = $False
+$Forward = $True
+$Wrap = $wdFindContinue
+$Format = $False
+$wdReplaceNone = 0
+$ReplaceWith = "Kinder, Jugend und Familien"
+$wdFindContinue = 1
+$ReplaceAll = 2
+
+$a = $objSelection.Find.Execute($FindText,$MatchCase,$MatchWholeWord, `
+$MatchWildcards,$MatchSoundsLike,$MatchAllWordForms,$Forward,`
+$Wrap,$Format,$ReplaceWith,$ReplaceAll)
+
+$objSelection = $objWord.Selection
+$wdFindContinue = 1
+$FindText = "Erziehung und Bildung"
+$MatchCase = $False
+$MatchWholeWord = $true
+$MatchWildcards = $False
+$MatchSoundsLike = $False
+$MatchAllWordForms = $False
+$Forward = $True
+$Wrap = $wdFindContinue
+$Format = $False
+$wdReplaceNone = 0
+$ReplaceWith = "Kinder, Jugend und Familien"
+$wdFindContinue = 1
+$ReplaceAll = 2
+$a = $objSelection.Find.Execute($FindText,$MatchCase,$MatchWholeWord, `
+$MatchWildcards,$MatchSoundsLike,$MatchAllWordForms,$Forward,`
+$Wrap,$Format,$ReplaceWith,$ReplaceAll)
+
+$objDoc.Save()
+$objDoc.Close()
+}
+$p = 0
+
+$objWord.Quit()
+
+$start = Get-Date
+Write-Output "Start:"$start
+Write-Output "Ende:"
+Get-Date
